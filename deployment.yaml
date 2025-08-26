@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-demoapp
+  namespace: maksim
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: python-demoapp
+  template:
+    metadata:
+      labels:
+        app: python-demoapp
+    spec:
+      containers:
+      - name: python-demoapp
+        image: railsrogerdev/python-demoapp:latest
+        ports:
+        - containerPort: 5000
+        env:
+        - name: FLASK_DEBUG
+          value: "0"
+        - name: HOST
+          value: "0.0.0.0"
+        - name: PORT
+          value: "5000"
